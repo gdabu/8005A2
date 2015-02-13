@@ -9,6 +9,7 @@ PORT = 8005
 
 module Echo
 	$i = 0
+  $messageCount = 0
    	
    	#Occurs when clients connect
    	def post_init
@@ -17,8 +18,8 @@ module Echo
 
    	#Occurs when receiving data
   	def receive_data(data)
-  		puts (data)
-      	send_data data
+      send_data ("E_#{data}")
+      puts ("#{data.chomp} -> #{$messageCount += 1}")
   	end
 
   	#Occurs when client disconnects
@@ -29,7 +30,7 @@ module Echo
 end
 
 #
-EM.select
+EM.epoll
 
 #-------------------------------------------------------------
 # Increase the number of file descriptors
@@ -41,11 +42,16 @@ rescue Exception => e
 	puts "> Unable to set total file descriptors"
 end
 
-puts EM.set_descriptor_table_size
+#puts EM.set_descriptor_table_size
 #-------------------------------------------------------------
 
+begin
 
-EM.run { 
-  puts "Echo server listening on #{HOST}:#{PORT}"
-  EM.start_server HOST, PORT, Echo
-}
+  EM.run { 
+    puts "Echo server listening on #{HOST}:#{PORT}"
+    EM.start_server HOST, PORT, Echo
+  }
+
+rescue Exception => e
+  puts "Server Failure"
+end

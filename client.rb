@@ -5,6 +5,7 @@ require 'thwait'
 
 
 $totalClients = Integer(ARGV[0])
+$totalMessages = Integer(ARGV[1])
 
 $i = 0
 threads = Array::new
@@ -16,9 +17,13 @@ while $i < $totalClients
 	threads = Thread.fork() do
 		begin
 			server = TCPSocket.open("localhost", 8005)
-			server.puts "hellogeoff"
-			line = server.gets
-			puts line
+			
+			$totalMessages.times do
+				server.puts "hellogeoff"
+				line = server.gets
+				puts line
+			end
+
 			sleep
 			#server.close
 		rescue Exception => e 
