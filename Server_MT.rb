@@ -27,11 +27,9 @@ while 1
 				mutex.synchronize do
 					connections.delete(client)
 					puts connections.length
+					break
 				end
-				break
 			end
 	    end
-	    
-    end #connection dies here
-    
-end
+    end #end connection
+end #end 
