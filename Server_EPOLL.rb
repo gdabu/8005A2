@@ -6,6 +6,7 @@ require 'eventmachine'
 HOST = 'localhost'
 PORT = 8005
 
+
 module Echo
 	$i = 0
    	
@@ -27,8 +28,8 @@ module Echo
 
 end
 
-
-EM.epoll
+#
+EM.select
 
 #-------------------------------------------------------------
 # Increase the number of file descriptors

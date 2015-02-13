@@ -21,7 +21,7 @@ while 1
 
 			line = client.gets
 			client.puts line
-	    	puts line
+			puts line
 			
 			if client.eof?
 				mutex.synchronize do

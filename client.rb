@@ -3,10 +3,15 @@ require 'thread'
 require 'thwait'
 
 
+
+$totalClients = Integer(ARGV[0])
+
 $i = 0
 threads = Array::new
 
-while $i < 2000
+
+
+while $i < $totalClients
 	puts $i += 1
 	threads = Thread.fork() do
 		begin
@@ -24,5 +29,6 @@ while $i < 2000
 	sleep(0.005)
 end
 
-gets
+STDIN.gets
+
 ThreadsWait.all_waits(*threads)
