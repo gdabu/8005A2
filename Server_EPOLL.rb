@@ -3,11 +3,11 @@
 require 'rubygems'
 require 'eventmachine'
 
-HOST = 'localhost'
+HOST = '192.168.0.103'
 PORT = 8005
 
 
-module Echo
+module EchoServer
 	$i = 0
   $messageCount = 0
    	
@@ -18,7 +18,7 @@ module Echo
 
    	#Occurs when receiving data
   	def receive_data(data)
-      send_data ("E_#{data}")
+      send_data ("E_#{data}\n")
       puts ("#{data.chomp} -> #{$messageCount += 1}")
   	end
 
@@ -27,7 +27,7 @@ module Echo
     	puts $i -= 1
    	end
 
-end
+end #end module Echo
 
 #
 EM.epoll
@@ -49,7 +49,7 @@ begin
 
   EM.run { 
     puts "Echo server listening on #{HOST}:#{PORT}"
-    EM.start_server HOST, PORT, Echo
+    EM.start_server HOST, PORT, EchoServer
   }
 
 rescue Exception => e
