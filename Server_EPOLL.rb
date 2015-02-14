@@ -3,7 +3,7 @@
 require 'rubygems'
 require 'eventmachine'
 
-HOST = '192.168.0.103'
+HOST = 'localhost'
 PORT = 8005
 
 

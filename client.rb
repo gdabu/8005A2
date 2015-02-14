@@ -21,7 +21,7 @@ while $i < $totalClients
 			server = TCPSocket.open(HOST, PORT)
 			
 			$totalMessages.times do
-				server.write ("hellogeoff\n")
+				server.write("hellogeoff\n")
 				line = server.gets
 				STDOUT.puts line
 			end
