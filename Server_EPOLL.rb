@@ -53,5 +53,6 @@ begin
   }
 
 rescue Exception => e
+  puts e.message
   puts "Server Failure"
 end

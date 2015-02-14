@@ -53,5 +53,6 @@ begin
 	end #end while 1
 
 rescue Exception => e
+	puts e.message
 	puts "Server Failure"
 end

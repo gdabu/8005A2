@@ -49,4 +49,6 @@ while 1
 end #end 
 
 rescue Exception => e
+	puts e.message
+	puts "Server Failure"
 end
