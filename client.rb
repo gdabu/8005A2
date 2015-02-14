@@ -2,13 +2,15 @@ require "socket"
 require 'thread'
 require 'thwait'
 
-
-
+################
+# - Variables
+################
 $totalClients = Integer(ARGV[0])
 $totalMessages = Integer(ARGV[1])
-
+HOST = 'localhost'
+PORT = 8005
 $i = 0
-threads = Array::new
+threads = []
 
 
 
@@ -16,12 +18,12 @@ while $i < $totalClients
 	puts $i += 1
 	threads = Thread.fork() do
 		begin
-			server = TCPSocket.open("localhost", 8005)
+			server = TCPSocket.open(HOST, PORT)
 			
 			$totalMessages.times do
-				server.puts "hellogeoff"
+				server.write ("hellogeoff\n")
 				line = server.gets
-				puts line
+				STDOUT.puts line
 			end
 
 			sleep
@@ -35,5 +37,4 @@ while $i < $totalClients
 end
 
 STDIN.gets
-
 ThreadsWait.all_waits(*threads)
