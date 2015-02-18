@@ -25,6 +25,10 @@ def killConnection( clientSocket, connections )
 	puts connections.length - 1
 end
 
+################
+# - SERVER ENTRY
+################
+
 puts "Echo server listening on #{HOST}:#{PORT}"
 $descriptors.push( serverSocket )
 $acceptor.push( serverSocket )

@@ -42,8 +42,10 @@ rescue Exception => e
 	puts "> Unable to set total file descriptors"
 end
 
-#puts EM.set_descriptor_table_size
-#-------------------------------------------------------------
+puts EM.set_descriptor_table_size
+
+
+
 
 begin
 

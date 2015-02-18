@@ -23,7 +23,9 @@ def killConnection( clientSocket, connections )
 	puts connections.length
 end
 
-
+################
+# - SERVER ENTRY
+################
 
 puts "Echo server listening on #{HOST}:#{PORT}"
 

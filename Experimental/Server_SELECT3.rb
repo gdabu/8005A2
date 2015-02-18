@@ -56,6 +56,10 @@ def threadedSelect( socketlist )
 
 end
 
+################
+# - SERVER ENTRY
+################
+
 puts "Echo server listening on #{HOST}:#{PORT}"
 $descriptors[0].push( $serverSocket )
 $descriptors[1].push( $serverSocket )
