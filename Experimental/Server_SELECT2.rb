@@ -8,6 +8,7 @@ require 'thwait'
 HOST = 'localhost'
 PORT = 8005
 $descriptors = []
+$acceptor = []
 serverSocket = TCPServer.open( PORT )
 serverSocket.setsockopt( Socket::SOL_SOCKET, Socket::SO_REUSEADDR, 1 )
 $messageCount = 0
@@ -26,12 +27,16 @@ end
 
 puts "Echo server listening on #{HOST}:#{PORT}"
 $descriptors.push( serverSocket )
+$acceptor.push( serverSocket )
 
 
 $threads = Thread.fork() do 
 	while 1
-		newClientSocket = serverSocket.accept()
-		$descriptors.push( newClientSocket )
+		serverSocketFD = IO.select($acceptor)
+		if serverSocketFD != nil then
+			newClientSocket = serverSocket.accept_nonblock()
+			$descriptors.push( newClientSocket )
+		end
 	end
 end
 

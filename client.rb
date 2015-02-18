@@ -5,13 +5,15 @@ require 'thwait'
 ################
 # - Variables
 ################
-$totalClients = Integer(ARGV[0])
-$totalMessages = Integer(ARGV[1])
-HOST = 'localhost'
-PORT = 8005
+HOST = ARGV[0]
+PORT = ARGV[1]
+$totalClients = Integer(ARGV[2])
+$totalMessages = Integer(ARGV[3])
+
 $i = 0
 threads = []
 
+STDOUT.sync = true
 
 
 while $i < $totalClients

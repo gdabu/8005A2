@@ -18,7 +18,7 @@ module EchoServer
 
    	#Occurs when receiving data
   	def receive_data(data)
-      send_data ("E_#{data}")
+      send_data ("#{data}")
       puts ("#{data.chomp} -> #{$messageCount += 1}")
   	end
 

@@ -12,6 +12,8 @@ serverSocket.setsockopt( Socket::SOL_SOCKET, Socket::SO_REUSEADDR, 1 )
 $messageCount = 0
 mutex = Mutex.new
 
+STDOUT.sync = true
+
 ################
 # - FUNCTIONS
 ################
@@ -32,10 +34,11 @@ while 1
    	Thread.fork(serverSocket.accept) do |client| 
 		connections.push(client)
 		puts connections.length
-		loop do
+		while 1
 
 			data = client.gets
-			client.puts ("M_#{data}")
+			client.puts ("#{data}")
+			client.flush
 			puts ("#{data.chomp} #{$messageCount += 1}")
 
 			if client.eof?
