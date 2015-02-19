@@ -31,15 +31,21 @@ puts "Echo server listening on #{HOST}:#{PORT}"
 
 begin
 
+maxconn = 0
+
 #client disconnects when thread dies
 while 1
    	Thread.fork(serverSocket.accept) do |client| 
 		connections.push(client)
 		puts connections.length
+
+		if connections.length > maxconn
+			maxconn = connections.length
+
 		while 1
 
-			data = client.gets
-			client.puts ("#{data}")
+			data = client.read ( 100 )
+			client.write data
 			client.flush
 			puts ("#{data.chomp} #{$messageCount += 1}")
 
@@ -54,6 +60,7 @@ while 1
 end #end 
 
 rescue Exception => e
+	puts maxconn
 	puts e.message
 	puts "Server Failure"
 end
