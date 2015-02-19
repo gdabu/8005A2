@@ -51,8 +51,8 @@ while 1
 				if sock.eof? 
 					killConnection( sock, descriptors )
 				else
-					data = sock.gets
-					sock.puts("#{data}")
+					data = sock.read( 100 )
+					sock.write data
 					sock.flush
 					puts ("#{data.chomp} #{$messageCount += 1}")
 				end #end ifelse
