@@ -31,7 +31,7 @@ puts "Echo server listening on #{HOST}:#{PORT}"
 
 begin
 
-maxconn = 0
+
 
 #client disconnects when thread dies
 while 1
@@ -39,8 +39,6 @@ while 1
 		connections.push(client)
 		puts connections.length
 
-		if connections.length > maxconn
-			maxconn = connections.length
 
 		while 1
 
@@ -60,7 +58,6 @@ while 1
 end #end 
 
 rescue Exception => e
-	puts maxconn
 	puts e.message
 	puts "Server Failure"
 end
