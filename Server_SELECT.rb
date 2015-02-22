@@ -18,7 +18,7 @@
 #---------------------------------------------------------------------------------------*/
 require "socket"
 require "logger"
-require_relative "serverFunctions"
+require_relative "ServerFunctions.rb"
 
 #------------------------
 #-- Variable Declaration
