@@ -55,17 +55,18 @@ begin
 while $currentNumberOfConnections < TOTALCLIENTS
 	
 	threads = Thread.fork() do
-
+			$currentNumberOfConnections += 1
 			serverSocket = TCPSocket.open(HOST, PORT)
-			puts $currentNumberOfConnections += 1
-
+			
 			currentConnectionNumber = $currentNumberOfConnections
+			puts currentConnectionNumber
+			
 			logger.info('|CONNECTED|'){"	[#{currentConnectionNumber}]"}
 			
 			startTime = Time.new
 
 			#Start sending/receiving messages
-			messageNumber = 0
+			#messageNumber = 0
 			TOTALMESSAGES.times do
 				serverSocket.write( message )
 				#logger.info("|SENDING|"){"	[#{currentConnectionNumber}]	:: MessageNumber=#{messageNumber += 1}; BytesSent=#{message.bytesize}"}
