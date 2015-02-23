@@ -68,7 +68,7 @@ module EchoServer
         $logger.info('CLIENT_REQUEST') { " #{Socket.unpack_sockaddr_in(get_peername)}: #{$numberOfClientRequests}" }
         $logger.info('SENDING_DATA') { " #{Socket.unpack_sockaddr_in(get_peername)}: #{data.bytesize}" }
 
-        puts (data)
+        #puts (data)
   	end
 
   	#Occurs when client disconnects

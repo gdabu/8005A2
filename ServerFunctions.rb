@@ -81,6 +81,6 @@ def echoMessage( clientSocket, readBufferSize )
 	data = clientSocket.read( readBufferSize )
 	clientSocket.write data
 	clientSocket.flush
-	puts (data)
+	#puts (data)
 	return data
 end
