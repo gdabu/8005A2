@@ -56,6 +56,7 @@ begin
 
 #client disconnects when thread dies
 while 1
+	#create a thread for every new connection
    	Thread.new(serverSocket.accept) do |clientSocket| 
 		
 		descriptors.push(clientSocket)
@@ -78,6 +79,7 @@ while 1
 
 			#Client kills connection
 			if clientSocket.eof?
+				#killConnection is put into a mutex so that disconnections are made 1-by-1
 				mutex.synchronize do
 					killConnection( clientSocket, descriptors )
 				end
